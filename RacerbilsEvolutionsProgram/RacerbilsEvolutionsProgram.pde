@@ -15,20 +15,32 @@ void setup() {
 void draw() {
   clear();
   fill(255);
-  rect(0,50,1000,1000);
-  image(trackImage,0,80);  
+  rect(0, 50, 1000, 1000);
+  image(trackImage, 0, 80);  
 
   carSystem.updateAndDisplay();
-  
+
   //TESTKODE: Frastortering af dårlige biler, for hver gang der går 200 frame - f.eks. dem der kører uden for banen
-  /* if (frameCount%200==0) {
-      println("FJERN DEM DER KØRER UDENFOR BANEN frameCount: " + frameCount);
-      for (int i = carSystem.CarControllerList.size()-1 ; i >= 0;  i--) {
-        SensorSystem s = carSystem.CarControllerList.get(i).sensorSystem;
-        if(s.whiteSensorFrameCount > 0){
-          carSystem.CarControllerList.remove(carSystem.CarControllerList.get(i));
-         }
+  if (frameCount%200==0) {
+    float bestRacerColor = 0;
+    int bestRacerPosition = 0;
+    println("FJERN DEM DER KØRER UDENFOR BANEN frameCount: " + frameCount);
+    for (int i = carSystem.CarControllerList.size()-1; i >= 0; i--) {
+      SensorSystem s = carSystem.CarControllerList.get(i).sensorSystem;
+      if (s.whiteSensorFrameCount > 0) {
+        carSystem.CarControllerList.remove(carSystem.CarControllerList.get(i));
       }
-    }*/
-    //
+      for (int i = carSystem.CarControllerList.size()-1; i >= 0; i--) {
+        if (bestRacerColor<s.clockWiseRotationFrameCounter&&s.whiteSensorFrameCount > 0) {
+          bestRacerColor=s.clockWiseRotationFrameCounter;
+          bestRacerPosition=i;
+          if ()
+            //carSystem.CarControllerList.remove(carSystem.CarControllerList.get(i-1));
+          } else {
+          //carSystem.CarControllerList.remove(carSystem.CarControllerList.get(i));
+        }
+      }
+    }
+  }
+  //
 }

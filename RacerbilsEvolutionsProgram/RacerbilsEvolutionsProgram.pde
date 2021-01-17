@@ -29,10 +29,15 @@ void draw() {
   fill(255);
   rect(0, 50, 1000, 1000);
   image(trackImage, 0, 80);  
-
+  text("Dette program er lavet til at lave den bedste mulige racerbil",10,10);
+  text("Kriterierne er hvor hurtig den kører og om den ryger ud af banen",10,25);
+  text("disse kriterier bliver opdateret så der til sidst kun er de bedste af bedste",10,40);
+  
   carSystem.updateAndDisplay();
 
-  //TESTKODE: Frastortering af dårlige biler, for hver gang der går 200 frame - f.eks. dem der kører uden for banen
+  //Sorterer bilerne så dem der ryger ud af banen fjernes
+  //og dem der ikke er nået langt på banen.
+  //Den bedste bil bliver klonet og kravene for at blive på banen bliver større.
   if (frameCount%200==0) {
     generationalBorder=generationalBorder+10;
     newPopulationSize=newPopulationSize-10;
